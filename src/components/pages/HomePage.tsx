@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, Clock, MapPin, Star, CheckCircle, Award, Users, Calendar, ArrowRight, Shield, Heart, Activity, Sparkles } from 'lucide-react';
+import { Phone, Mail, Clock, MapPin, Star, CheckCircle, Award, Users, Calendar, ArrowRight, Shield, Heart, Activity, Sparkles, X } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Image } from '@/components/ui/image';
@@ -48,6 +48,7 @@ export default function HomePage() {
   const [isLoadingTestimonials, setIsLoadingTestimonials] = useState(true);
   const [isLoadingGallery, setIsLoadingGallery] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   
   const [formData, setFormData] = useState({
     patientName: '',
@@ -135,7 +136,8 @@ export default function HomePage() {
         treatmentType: '',
         message: ''
       });
-      alert('Appointment request submitted successfully! We will contact you soon.');
+      setShowSuccessPopup(true);
+      setTimeout(() => setShowSuccessPopup(false), 5000);
     } catch (error) {
       console.error('Error submitting appointment:', error);
       alert('Failed to submit appointment request. Please try again.');
@@ -151,6 +153,61 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-clip selection:bg-primary/20 selection:text-primary-foreground">
+      {/* Success Popup Modal */}
+      {showSuccessPopup && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+            transition={{ type: "spring", damping: 20, stiffness: 300 }}
+            className="bg-white rounded-3xl p-8 md:p-12 max-w-md w-full mx-4 shadow-2xl relative"
+          >
+            <button
+              onClick={() => setShowSuccessPopup(false)}
+              className="absolute top-6 right-6 p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-500" />
+            </button>
+
+            <div className="flex flex-col items-center text-center">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: "spring", damping: 15 }}
+                className="w-16 h-16 bg-accent-blue/20 rounded-full flex items-center justify-center mb-6"
+              >
+                <CheckCircle className="w-8 h-8 text-accent-blue" />
+              </motion.div>
+
+              <h3 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-3">
+                Thank You!
+              </h3>
+
+              <p className="text-text-light-gray mb-2">
+                Your appointment request has been received.
+              </p>
+
+              <p className="text-sm text-text-light-gray mb-8">
+                We'll contact you shortly to confirm your appointment details.
+              </p>
+
+              <motion.div
+                initial={{ width: "100%" }}
+                animate={{ width: "0%" }}
+                transition={{ duration: 5, ease: "linear" }}
+                className="absolute bottom-0 left-0 h-1 bg-accent-blue rounded-b-3xl"
+              />
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+
       <Header />
 
       {/* --- HERO SECTION: The Opening Statement --- */}
