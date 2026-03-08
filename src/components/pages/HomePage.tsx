@@ -222,7 +222,7 @@ export default function HomePage() {
             src="https://static.wixstatic.com/media/26c3d3_874c37de965a43b3bf33e470aa7eb252~mv2.png?originWidth=2048&originHeight=640"
             alt="Pristine dental clinic environment"
             className="w-full h-full object-cover"
-            width={2400}
+            width={1200}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/60 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
@@ -557,7 +557,7 @@ export default function HomePage() {
              src="https://static.wixstatic.com/media/26c3d3_967fedce13684a97a8e6470b6acece41~mv2.png?originWidth=1152&originHeight=768"
              alt="Appointment Background"
              className="w-full h-full object-cover opacity-50 mix-blend-multiply"
-             width={1200}
+             width={600}
            />
         </div>
 
@@ -698,46 +698,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- GALLERY: Masonry-ish Grid --- */}
-      <section id="gallery" className="w-full py-32 bg-background">
-        <div className="max-w-[120rem] mx-auto px-6 md:px-12 lg:px-20">
-          <div className="text-center mb-16">
-            <h2 className="font-heading text-4xl md:text-5xl font-bold mb-4">Clinic Tour</h2>
-            <p className="text-lg text-text-light-gray">A glimpse into our world of modern dentistry.</p>
-          </div>
 
-          {isLoadingGallery ? (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-96 animate-pulse bg-gray-100 rounded-2xl" />
-          ) : gallery.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
-              {gallery.map((item, index) => (
-                <motion.div
-                  key={item._id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className={`relative group overflow-hidden rounded-2xl ${index === 0 || index === 3 ? 'md:col-span-2' : ''}`}
-                >
-                  {item.image && (
-                    <Image
-                      src={item.image}
-                      alt={item.altText || "Clinic Gallery"}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      width={800}
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
-                    <p className="text-white font-medium text-lg">{item.title}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-12 text-text-light-gray">Gallery coming soon.</div>
-          )}
-        </div>
-      </section>
 
       {/* --- CONTACT: Minimalist Info --- */}
       <section id="contact" className="w-full py-24 bg-foreground text-white">
