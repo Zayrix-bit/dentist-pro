@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Phone, Mail, Clock, MapPin, Star, CheckCircle, Award, Users, Calendar, ArrowRight, Shield, Heart, Activity, Sparkles, X } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -365,6 +366,52 @@ export default function HomePage() {
                 </div>
               )}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* --- SMILE TRANSFORMATIONS: Before/After Slider --- */}
+      <section id="transformations" className="w-full py-32 bg-background">
+        <div className="max-w-[120rem] mx-auto px-6 md:px-12 lg:px-20">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <FadeIn>
+              <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">Smile Transformations</h2>
+              <p className="text-lg text-text-light-gray">
+                Witness the remarkable changes our patients have experienced. Drag the slider to see the before and after results.
+              </p>
+            </FadeIn>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <FadeIn delay={0.1}>
+              <div>
+                <h3 className="font-heading text-2xl font-bold mb-4 text-foreground">Case Study 1</h3>
+                <p className="text-text-light-gray mb-6">Complete smile makeover with professional whitening and cosmetic bonding.</p>
+                <BeforeAfterSlider
+                  beforeImage="https://static.wixstatic.com/media/26c3d3_56ebae4e8b354d94a143a311d0d86251~mv2.png?originWidth=576&originHeight=384"
+                  afterImage="https://static.wixstatic.com/media/26c3d3_eeeed0f47d51450192d177c81d7fa4bd~mv2.png?originWidth=576&originHeight=384"
+                  beforeLabel="Before"
+                  afterLabel="After"
+                  alt="Smile transformation case 1"
+                />
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <div>
+                <h3 className="font-heading text-2xl font-bold mb-4 text-foreground">Case Study 2</h3>
+                <p className="text-text-light-gray mb-6">Orthodontic treatment with invisible aligners for a perfectly aligned smile.</p>
+                <BeforeAfterSlider
+                  beforeImage="https://static.wixstatic.com/media/26c3d3_47160297012d468da81f475c60c65aa2~mv2.png?originWidth=576&originHeight=384"
+                  afterImage="https://static.wixstatic.com/media/26c3d3_09d7d3f44dc74bd6806f7aa3f8b5e13f~mv2.png?originWidth=576&originHeight=384"
+                  beforeLabel="Before"
+                  afterLabel="After"
+                  alt="Smile transformation case 2"
+                />
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
