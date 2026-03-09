@@ -255,14 +255,18 @@ export default function HomePage() {
 
               <div className="flex flex-wrap gap-4 mb-16">
                 <a href="#appointment">
-                  <Button className="h-14 px-8 text-lg bg-accent-blue hover:bg-accent-blue/90 text-white rounded-full shadow-lg shadow-accent-blue/20 transition-all hover:scale-105">
-                    Book Appointment
-                  </Button>
+                  <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
+                    <Button className="h-14 px-8 text-lg bg-gradient-to-r from-accent-blue to-primary text-white rounded-full shadow-lg shadow-accent-blue/30 hover:shadow-xl hover:shadow-accent-blue/50 transition-all font-semibold">
+                      Book Appointment
+                    </Button>
+                  </motion.div>
                 </a>
                 <a href="#services">
-                  <Button variant="outline" className="h-14 px-8 text-lg border-2 border-primary/20 text-foreground hover:bg-primary/5 hover:border-primary/40 rounded-full transition-all">
-                    Explore Services
-                  </Button>
+                  <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
+                    <Button variant="outline" className="h-14 px-8 text-lg border-2 border-accent-blue/40 text-foreground hover:bg-accent-blue/10 hover:border-accent-blue/80 rounded-full transition-all font-semibold">
+                      Explore Services
+                    </Button>
+                  </motion.div>
                 </a>
               </div>
 
@@ -330,17 +334,24 @@ export default function HomePage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {services.map((service, index) => (
                     <FadeIn key={service._id} delay={index * 0.1} className="h-full">
-                      <div className="group relative h-full bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                      <motion.div 
+                        className="group relative h-full bg-white border border-gray-100 rounded-2xl p-8 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 hover:-translate-y-1 overflow-hidden cursor-pointer"
+                        whileHover={{ y: -8 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
                         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150 duration-700" />
                         
                         <div className="relative z-10">
-                          <div className="w-14 h-14 rounded-xl bg-secondary/30 flex items-center justify-center mb-6 text-accent-blue group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300">
+                          <motion.div 
+                            className="w-14 h-14 rounded-xl bg-secondary/30 flex items-center justify-center mb-6 text-accent-blue group-hover:bg-accent-blue group-hover:text-white transition-colors duration-300"
+                            whileHover={{ scale: 1.15, rotate: 10 }}
+                          >
                             {service.serviceIcon ? (
                               <Image src={service.serviceIcon} alt="" className="w-8 h-8 object-contain" width={32} />
                             ) : (
                               <Activity className="w-7 h-7" />
                             )}
-                          </div>
+                          </motion.div>
                           
                           <h3 className="font-heading text-xl font-bold mb-3 text-foreground group-hover:text-accent-blue transition-colors">
                             {service.serviceName}
@@ -351,12 +362,16 @@ export default function HomePage() {
                           </p>
                           
                           {service.learnMoreLink && (
-                            <a href={service.learnMoreLink} className="inline-flex items-center text-sm font-semibold text-foreground group-hover:text-accent-blue transition-colors">
-                              Learn More <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                            </a>
+                            <motion.a 
+                              href={service.learnMoreLink} 
+                              className="inline-flex items-center text-sm font-semibold text-foreground group-hover:text-accent-blue transition-colors"
+                              whileHover={{ x: 4 }}
+                            >
+                              Learn More <motion.span whileHover={{ x: 2 }}><ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" /></motion.span>
+                            </motion.a>
                           )}
                         </div>
-                      </div>
+                      </motion.div>
                     </FadeIn>
                   ))}
                 </div>
@@ -488,13 +503,20 @@ export default function HomePage() {
               { icon: Sparkles, title: "Premium Comfort", desc: "Relaxing amenities and a calming atmosphere to put you at ease." }
             ].map((feature, i) => (
               <FadeIn key={i} delay={i * 0.1}>
-                <div className="group p-8 rounded-2xl bg-white border border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform">
+                <motion.div 
+                  className="group p-8 rounded-2xl bg-white border border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300 h-full cursor-pointer"
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <motion.div 
+                    className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-6 text-primary group-hover:scale-110 transition-transform"
+                    whileHover={{ scale: 1.2, rotate: 10 }}
+                  >
                     <feature.icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="font-heading text-xl font-bold mb-3 text-foreground">{feature.title}</h3>
-                  <p className="text-text-light-gray leading-relaxed">{feature.desc}</p>
-                </div>
+                  </motion.div>
+                  <h3 className="font-heading text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">{feature.title}</h3>
+                  <p className="text-text-light-gray leading-relaxed group-hover:text-foreground/80 transition-colors">{feature.desc}</p>
+                </motion.div>
               </FadeIn>
             ))}
           </div>
