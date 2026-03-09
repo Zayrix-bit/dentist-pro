@@ -79,7 +79,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 transition-colors text-foreground hover:text-accent-blue"
+            className="lg:hidden p-2 transition-colors text-white bg-accent-blue rounded-lg hover:bg-primary"
             aria-label="Toggle menu"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
