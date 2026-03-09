@@ -306,11 +306,11 @@ export default function HomePage() {
             <div className="lg:col-span-4 relative">
               <div className="sticky top-32">
                 <FadeIn>
-                  <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6 text-foreground">
+                  <h2 className="font-heading text-2xl md:text-3xl font-bold mb-6 text-foreground leading-tight">
                     Comprehensive <br />
                     <span className="text-primary">Dental Solutions</span>
                   </h2>
-                  <p className="font-paragraph text-lg text-text-light-gray mb-8 leading-relaxed">
+                  <p className="font-paragraph text-base md:text-lg text-text-light-gray mb-8 leading-relaxed">
                     From routine hygiene to complex restorative procedures, our expert team utilizes state-of-the-art technology to ensure your comfort and results.
                   </p>
                   <div className="hidden lg:block w-20 h-1 bg-accent-blue rounded-full" />
